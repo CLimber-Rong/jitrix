@@ -1,0 +1,6 @@
+.vscode
+jitrix
+jitrix.exe
+stencil/stencil.o
+stencil/stencil.objdump
+stencil/jit_data.hpp

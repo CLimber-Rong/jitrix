@@ -1,0 +1,25 @@
+# 计算fib40
+:start
+    set r1, 40
+    call $fib
+    output r2
+    ret
+:fib
+    set r3, 2
+    compare r4, r1, r3
+    branch r4, 4, $L1
+    set r2, 1
+    ret
+:L1
+    set r3, 1
+    sub r1, r1, r3
+    push r1
+    call $fib
+    pop r3
+    push r2
+    set r2, 1
+    sub r1, r3, r2
+    call $fib
+    pop r3
+    add r2, r2, r3
+    ret

@@ -22,6 +22,7 @@ enum COMMAND {
 	op_sub, // 减
 	op_mul, //乘
 	op_div,//除
+	op_mod,//取模
 	op_and, // 与
 	op_or, // 或
 	op_invert, // 取反

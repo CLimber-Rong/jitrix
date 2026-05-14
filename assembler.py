@@ -14,6 +14,7 @@ class Command(IntEnum):
     op_sub = auto()
     op_mul = auto()
     op_div = auto()
+    op_mod = auto()
     op_and = auto()
     op_or = auto()
     op_invert = auto()
@@ -39,6 +40,7 @@ INSTR_INFO = {
     'sub':     (Command.op_sub, 3),
     'mul':     (Command.op_mul, 3),
     'div':     (Command.op_div, 3),
+    'mod':     (Command.op_mod, 3),
     'and':     (Command.op_and, 3),
     'or':      (Command.op_or, 3),
     'compare': (Command.op_compare, 3),

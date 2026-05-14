@@ -32,9 +32,10 @@ const jit_stencil stencil[] = { jit_stencil(NULL, 0, NULL, 0), JITRIX_JIT_MAKE_D
 	JITRIX_JIT_MAKE_DATA(jit_store), JITRIX_JIT_MAKE_DATA(jit_move), JITRIX_JIT_MAKE_DATA(jit_set),
 	JITRIX_JIT_MAKE_DATA(jit_push), JITRIX_JIT_MAKE_DATA(jit_pop), JITRIX_JIT_MAKE_DATA(jit_add),
 	JITRIX_JIT_MAKE_DATA(jit_sub), JITRIX_JIT_MAKE_DATA(jit_mul), JITRIX_JIT_MAKE_DATA(jit_div),
-	JITRIX_JIT_MAKE_DATA(jit_and), JITRIX_JIT_MAKE_DATA(jit_or), JITRIX_JIT_MAKE_DATA(jit_invert),
-	JITRIX_JIT_MAKE_DATA(jit_not), JITRIX_JIT_MAKE_DATA(jit_compare),
-	JITRIX_JIT_MAKE_DATA(jit_input), JITRIX_JIT_MAKE_DATA(jit_output) };
+	JITRIX_JIT_MAKE_DATA(jit_mod), JITRIX_JIT_MAKE_DATA(jit_and), JITRIX_JIT_MAKE_DATA(jit_or),
+	JITRIX_JIT_MAKE_DATA(jit_invert), JITRIX_JIT_MAKE_DATA(jit_not),
+	JITRIX_JIT_MAKE_DATA(jit_compare), JITRIX_JIT_MAKE_DATA(jit_input),
+	JITRIX_JIT_MAKE_DATA(jit_output) };
 
 #if JITRIX_JIT_MUSTTAIL == 1
 const jit_stencil stencil_addpc = JITRIX_JIT_MAKE_DATA(jit_addpc);
@@ -117,6 +118,7 @@ inline vm::jit_func_type compile_single_cmd(
 	case vm::op_sub:
 	case vm::op_mul:
 	case vm::op_div:
+	case vm::op_mod:
 	case vm::op_and:
 	case vm::op_or:
 		i1 = &reg[arg[0]];
@@ -162,7 +164,7 @@ inline vm::jit_func_type patch(vm::jit_func_type func, vm::COMMAND cmd, void **h
 	unsigned char *ptr = (unsigned char *) func;
 	const jit_stencil &sten = stencil[cmd];
 
-	for (int i = 0; i < sten.hole_len; i++) {
+	for (unsigned int i = 0; i < sten.hole_len; i++) {
 		// 遍历并逐个填上空洞
 
 		// 该空洞具体需要填入的64位偏移量
@@ -195,7 +197,7 @@ inline vm::jit_func_type compile_addpc(vm::vm *m, unsigned int pc) {
 
 	memcpy(ptr, stencil_addpc.code, stencil_addpc.code_len);
 
-	for (int i = 0; i < stencil_addpc.hole_len; i++) {
+	for (unsigned int i = 0; i < stencil_addpc.hole_len; i++) {
 		// 遍历并逐个填上空洞
 
 		// 该空洞具体需要填入的64位偏移量
@@ -254,7 +256,7 @@ inline void compile(vm::vm *m, unsigned int code_addr) {
 
 		if (next_cmd == vm::op_jump || next_cmd == vm::op_branch || next_cmd == vm::op_call
 				|| next_cmd == vm::op_ret || next_cmd == vm::op_jr) {
-			//碰到控制流指令，结束编译
+			// 碰到控制流指令，结束编译
 			break;
 		}
 

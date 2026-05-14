@@ -23,7 +23,7 @@ int main(int argc, char **argv) {
 	// 读取字节码
 	unsigned int size;
 
-	auto code = bin::read_cmd_from_file("test.bin", size);
+	auto code = bin::read_cmd_from_file(argv[1], size);
 
 	// 虚拟机运行
 	vm::vm *m = new vm::vm();

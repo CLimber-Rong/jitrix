@@ -127,6 +127,16 @@ void jit_div() {
 	NEXT;
 }
 
+// void jit_mod() {
+// 	reg[arg[0]] = reg[arg[1]] % reg[arg[2]];
+// 	++(*pc_stack);
+// }
+
+void jit_mod() {
+	i1 = i2 % i3;
+	NEXT;
+}
+
 // void jit_and() {
 // 	reg[arg[0]] = reg[arg[1]] & reg[arg[2]];
 // 	++(*pc_stack);

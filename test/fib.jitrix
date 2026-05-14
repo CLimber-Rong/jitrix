@@ -1,6 +1,6 @@
-# 计算fib40
+# 计算fib35
 :start
-    set r1, 40
+    set r1, 35
     call $fib
     output r2
     ret

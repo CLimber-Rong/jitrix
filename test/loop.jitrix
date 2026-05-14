@@ -1,0 +1,20 @@
+:main
+# 设r1为sum，r2为i，r3为100000000，r4为11451419，r5为1
+set r1, 0
+set r2, 1
+set r3, 100000000
+set r4, 11451419
+set r5, 1
+jump $loop
+
+:loop
+compare r6, r2, r3
+branch r6, 4, $exit
+add r1, r1, r2
+mod r1, r1, r4
+add r2, r2, r5
+jump $loop
+
+:exit
+output r1
+ret

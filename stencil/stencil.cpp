@@ -137,6 +137,36 @@ void jit_mod() {
 	NEXT;
 }
 
+// void jit_sll() {
+// 	reg[arg[0]] = reg[arg[1]] << reg[arg[2]];
+// 	++(*pc_stack);
+// }
+
+void jit_sll() {
+	i1 = i2 << i3;
+	NEXT;
+}
+
+// void jit_srl() {
+// 	reg[arg[0]] = ((unsigned int)reg[arg[1]]) >> reg[arg[2]];
+// 	++(*pc_stack);
+// }
+
+void jit_srl() {
+	i1 = ((unsigned int) i2) >> i3;
+	NEXT;
+}
+
+// void jit_sra() {
+// 	reg[arg[0]] = ((signed int)reg[arg[1]]) >> reg[arg[2]];
+// 	++(*pc_stack);
+// }
+
+void jit_sra() {
+	i1 = ((signed int) i2) >> i3;
+	NEXT;
+}
+
 // void jit_and() {
 // 	reg[arg[0]] = reg[arg[1]] & reg[arg[2]];
 // 	++(*pc_stack);

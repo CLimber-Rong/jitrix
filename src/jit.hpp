@@ -32,7 +32,8 @@ const jit_stencil stencil[] = { jit_stencil(NULL, 0, NULL, 0), JITRIX_JIT_MAKE_D
 	JITRIX_JIT_MAKE_DATA(jit_store), JITRIX_JIT_MAKE_DATA(jit_move), JITRIX_JIT_MAKE_DATA(jit_set),
 	JITRIX_JIT_MAKE_DATA(jit_push), JITRIX_JIT_MAKE_DATA(jit_pop), JITRIX_JIT_MAKE_DATA(jit_add),
 	JITRIX_JIT_MAKE_DATA(jit_sub), JITRIX_JIT_MAKE_DATA(jit_mul), JITRIX_JIT_MAKE_DATA(jit_div),
-	JITRIX_JIT_MAKE_DATA(jit_mod), JITRIX_JIT_MAKE_DATA(jit_and), JITRIX_JIT_MAKE_DATA(jit_or),
+	JITRIX_JIT_MAKE_DATA(jit_mod), JITRIX_JIT_MAKE_DATA(jit_sll), JITRIX_JIT_MAKE_DATA(jit_srl),
+	JITRIX_JIT_MAKE_DATA(jit_sra), JITRIX_JIT_MAKE_DATA(jit_and), JITRIX_JIT_MAKE_DATA(jit_or),
 	JITRIX_JIT_MAKE_DATA(jit_invert), JITRIX_JIT_MAKE_DATA(jit_not),
 	JITRIX_JIT_MAKE_DATA(jit_compare), JITRIX_JIT_MAKE_DATA(jit_input),
 	JITRIX_JIT_MAKE_DATA(jit_output) };
@@ -119,6 +120,9 @@ inline vm::jit_func_type compile_single_cmd(
 	case vm::op_mul:
 	case vm::op_div:
 	case vm::op_mod:
+	case vm::op_sll:
+	case vm::op_srl:
+	case vm::op_sra:
 	case vm::op_and:
 	case vm::op_or:
 		i1 = &reg[arg[0]];

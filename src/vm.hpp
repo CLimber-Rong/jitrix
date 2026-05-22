@@ -20,21 +20,24 @@ enum COMMAND {
 	// op dst_reg, reg, reg或op dst_reg, reg
 	op_add, // 加
 	op_sub, // 减
-	op_mul, //乘
-	op_div,//除
-	op_mod,//取模
+	op_mul, // 乘
+	op_div, // 除
+	op_mod, // 取模
+	op_sll, // 逻辑左移
+	op_srl, // 逻辑右移
+	op_sra, // 算数右移
 	op_and, // 与
 	op_or, // 或
 	op_invert, // 取反
-	op_not,	//逻辑非
+	op_not, // 逻辑非
 	op_compare, // 比较
-	//输入输出指令
+	// 输入输出指令
 	op_input, // input reg
 	op_output, // output reg
 	// 流程控制指令
 	op_branch, // branch reg, branch_case_number, addr
 	op_jump, // jump addr
-	op_jr,	// jump reg
+	op_jr, // jump reg
 	op_call, // call addr
 	op_ret // ret
 };

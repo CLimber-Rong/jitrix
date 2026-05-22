@@ -47,6 +47,10 @@ jitrix-vm设有以下指令：
 |``sub rX, rY, rZ``|计算``rY-rZ``的值并存储到``rX``中|
 |``mul rX, rY, rZ``|计算``rY*rZ``的值并存储到``rX``中|
 |``div rX, rY, rZ``|计算``rY/rZ``的值并存储到``rX``中|
+|``mod rX, rY, rZ``|计算``rY%rZ``的值并存储到``rX``中|
+|``sll rX, rY, rZ``|计算``rY<<rZ``的值并存储到``rX``中|
+|``srl rX, rY, rZ``|计算``((unsigned int)rY)>>rZ``的值并存储到``rX``中|
+|``sra rX, rY, rZ``|计算``((signed int)rY)>>rZ``的值并存储到``rX``中|
 |``and rX, rY, rZ``|计算``rY&rZ``的值并存储到``rX``中|
 |``or rX, rY, rZ``|计算``rY\|rZ``的值并存储到``rX``中|
 |``compare rX, rY, rZ``|比较``rY``和``rZ``：若``rY<rZ``则``rX=1``；若``rY=rZ``则``rX=1<<1``；若``rY>rZ``则``rX=1<<2``|

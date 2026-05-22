@@ -118,6 +118,18 @@ inline int vm::run() {
 			reg[arg[0]] = reg[arg[1]] % reg[arg[2]];
 			break;
 
+		case op_sll:
+			reg[arg[0]] = reg[arg[1]] << reg[arg[2]];
+			break;
+
+		case op_srl:
+			reg[arg[0]] = ((unsigned int) reg[arg[1]]) >> reg[arg[2]];
+			break;
+
+		case op_sra:
+			reg[arg[0]] = ((signed int) reg[arg[1]]) >> reg[arg[2]];
+			break;
+
 		case op_and:
 			reg[arg[0]] = reg[arg[1]] & reg[arg[2]];
 			break;
